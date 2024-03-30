@@ -22,6 +22,9 @@ Además, genera una API nueva, con menos datos, para consumir.
 ```bash
   node app.js
 ```
+
+`node app.js` inicia el servidor en localhost:3000 y comienza el fetch a la API de Adidas (Arg).
+
 ## Variables de ambiente
 
 Para correr el proyecto se necesita un archivo `.env` con las siguientes variables

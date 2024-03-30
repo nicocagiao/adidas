@@ -2,6 +2,7 @@ node_modules
 
 tokens
 
-/products
+# ignore all .a files
+*.db
 
 .env
