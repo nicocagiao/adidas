@@ -47,7 +47,7 @@ Para correr el proyecto se necesita un archivo `.env` con las siguientes variabl
 
 ## Así se ve la API en http://localhost:3000/api 
 
-![App Screenshot](https://drive.google.com/file/d/1Q5ah-P7tKipTbwE8XaIbxKMpetD_8XYE/view?usp=sharing)
+![App Screenshot](https://github.com/nicocagiao/ar-adidas/blob/main/apiscreenshot.png)
 
 
 ## A Terminar
