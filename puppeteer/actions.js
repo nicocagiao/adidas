@@ -1,5 +1,8 @@
-const { baseURL, query, batchSize } = require('../config/index');
-const { saveToDatabase } = require('../database/helpers'); // Assuming you have a helper file for database operations
+const { baseURL, query, batchSize, whatsappNumber} = require('../config/index');
+const { saveToDatabase } = require('../database/helpers');
+const { db, getProductById } = require('../database');
+const { sendMessage } = require('../venom/index')
+
 
 async function fetchData(browser, queryItem, start) {
     if (!browser) {
@@ -25,6 +28,18 @@ async function fetchData(browser, queryItem, start) {
         }));
 
         await saveToDatabase(filteredItems);
+
+       // Check for changes in sale price
+    //    for (const item of filteredItems) {
+    //     getProductById(item.productId).then(row => {
+    //         if (row && row.salePrice !== item.salePrice) {
+    //             console.log(`Sale price changed for product ID ${item.productId}. New price: ${item.salePrice}`);
+    //             sendMessage(`${whatsappNumber}`, `Sale price changed for product ID ${item.productId}. New price: ${item.salePrice}`);
+    //         }
+    //     }).catch(err => {
+    //         console.error('Error querying database:', err);
+    //     });
+    // }
         return {
             totalCount: data.raw.itemList.count,
             items: filteredItems
@@ -40,7 +55,6 @@ async function startFetchingData(browser) {
     for (let queryIndex = 0; queryIndex < query.length; queryIndex++) {
         const queryItem = query[queryIndex];
         console.log('Fetching data for:', queryItem);
-        
         const firstBatchData = await fetchData(browser, queryItem, 0);
         if (!firstBatchData) continue;
         

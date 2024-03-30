@@ -5,7 +5,9 @@
     "express": "^4.19.2",
     "node-cron": "^3.0.3",
     "puppeteer": "^22.6.1",
+    "qrcode-terminal": "^0.12.0",
     "sqlite3": "^5.1.7",
-    "venom-bot": "^5.0.21"
+    "venom-bot": "^5.0.21",
+    "whatsapp-web.js": "^1.23.0"
   }
 }
