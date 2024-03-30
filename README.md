@@ -27,7 +27,7 @@ Además, genera una API nueva, con menos datos, para consumir.
 
 ## Variables de ambiente
 
-Para correr el proyecto se necesita un archivo `.env` con las siguientes variables
+Para correr el proyecto se necesita un archivo `.env` con las siguientes variables - Hay un archivo de ejemplo llamado `.env.example`
 
 `BASE_URL=` url de la API
 
