@@ -1,7 +1,7 @@
 const { baseURL, query, batchSize, whatsappNumber} = require('../config/index');
 const { saveToDatabase } = require('../database/helpers');
 const { db, getProductById } = require('../database');
-const { sendMessage } = require('../venom/index')
+const { sendMessage } = require('../whatsapp-web/index')
 
 
 async function fetchData(browser, queryItem, start) {

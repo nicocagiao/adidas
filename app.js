@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const cron = require('node-cron');
 const { initializeBrowser } = require('./puppeteer');
-const { initializeWhatsappWeb, sendMessage, client }  = require('./venom');
+const { initializeWhatsappWeb, sendMessage, client }  = require('./whatsapp-web');
 const { startFetchingData } = require('./puppeteer/actions');
 const { db, getProductById } = require('./database');
 
