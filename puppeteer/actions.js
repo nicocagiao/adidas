@@ -16,30 +16,21 @@ async function fetchData(browser, queryItem, start) {
         await page.goto(url, { waitUntil: 'networkidle0' });
 
         const data = await page.evaluate(() => JSON.parse(document.body.innerText));
-
-        const filteredItems = data.raw.itemList.items.map(item => ({
-            link: item.link,
-            displayName: item.displayName,
-            productId: item.productId,
-            price: item.price,
-            salePrice: item.salePrice,
-            salePercentage: item.salePercentage,
-            imageUrl: item.image.src
-        }));
+        let filteredItems = {};
+        if(data.raw.itemList.items){
+            filteredItems = data.raw.itemList.items.map(item => ({
+                link: item.link,
+                displayName: item.displayName,
+                productId: item.productId,
+                price: item.price,
+                salePrice: item.salePrice,
+                salePercentage: item.salePercentage,
+                imageUrl: item.image.src
+            }));
+        }     
 
         await saveToDatabase(filteredItems);
 
-       // Check for changes in sale price
-    //    for (const item of filteredItems) {
-    //     getProductById(item.productId).then(row => {
-    //         if (row && row.salePrice !== item.salePrice) {
-    //             console.log(`Sale price changed for product ID ${item.productId}. New price: ${item.salePrice}`);
-    //             sendMessage(`${whatsappNumber}`, `Sale price changed for product ID ${item.productId}. New price: ${item.salePrice}`);
-    //         }
-    //     }).catch(err => {
-    //         console.error('Error querying database:', err);
-    //     });
-    // }
         return {
             totalCount: data.raw.itemList.count,
             items: filteredItems
@@ -62,7 +53,23 @@ async function startFetchingData(browser) {
         console.log(`Total items for ${queryItem}: ${totalItemsForQuery}`);
         
         for (let i = batchSize; i < totalItemsForQuery; i += batchSize) {
-            await fetchData(browser, queryItem, i);
+            let filteredItems = [];
+            filteredItems = await fetchData(browser, queryItem, i);
+
+         //Ver si cambió el precio
+        if(filteredItems){
+            for (const item of filteredItems.items) {
+                getProductById(item.productId).then(row => {
+                    if (row && row.salePrice < item.salePrice) {
+                        console.log(`Sale price changed for product ID ${item.productId}. New price: ${item.salePrice}`);
+                        sendMessage(`${whatsappNumber}`, `Este producto acaba de cambiar de precio!:\n${item.displayName}.\nPrecio nuevo: ${item.salePrice}.\n% de descuento: ${item.salePercentage}.\n${item.link}`);
+                    }
+                }).catch(err => {
+                    console.error('Error querying database:', err);
+                });
+            }
+        }
+       
         }
     }
 }
