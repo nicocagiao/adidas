@@ -61,3 +61,5 @@ Para correr el proyecto se necesita un archivo `.env` con las siguientes variabl
  
 - optimizar las actions.js de puppeteer para que haga API calls simultáneas (ver límite de API y evitar ser bloqueado por Adidas) - Además, el fetch se hace uno por uno para que no sobrecargue tanto el CPU y la memoria.
 
+- Como implementar caching para no tener que hacer request a la API y solo hacerla cuando hay un cambio
+
