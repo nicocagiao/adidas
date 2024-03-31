@@ -58,8 +58,6 @@ Para correr el proyecto se necesita un archivo `.env` con las siguientes variabl
 
 
 ## A Terminar
-
-- Whatsapp web ya envía mensajes de prueba, hay que incorporar la lógica de mensajes
-- 
+ 
 - optimizar las actions.js de puppeteer para que haga API calls simultáneas (ver límite de API y evitar ser bloqueado por Adidas) - Además, el fetch se hace uno por uno para que no sobrecargue tanto el CPU y la memoria.
 
