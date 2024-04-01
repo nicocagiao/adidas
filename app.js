@@ -17,7 +17,7 @@ const config = require('./config/index');
             console.log('Running fetchData function every hour...');
             for (let queryIndex = 0; queryIndex < config.query.length; queryIndex++) {
                 const queryItem = config.query[queryIndex];
-                console.log('Fetching data for:', queryItem);
+                // console.log('Fetching data for:', queryItem);
                 
                 const totalItems = await startFetchingData(browser); 
             }

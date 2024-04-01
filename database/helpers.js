@@ -12,7 +12,7 @@ async function saveToDatabase(items) {
         }
         
         stmt.finalize();
-        console.log('Items saved to the database.');
+        // console.log('Items saved to the database.');
 
         // Check for changes in sale price
         for (const item of items) {

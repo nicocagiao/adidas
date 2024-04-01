@@ -45,12 +45,12 @@ async function fetchData(browser, queryItem, start) {
 async function startFetchingData(browser) {
     for (let queryIndex = 0; queryIndex < query.length; queryIndex++) {
         const queryItem = query[queryIndex];
-        console.log('Fetching data for:', queryItem);
+        // console.log('Fetching data for:', queryItem);
         const firstBatchData = await fetchData(browser, queryItem, 0);
         if (!firstBatchData) continue;
         
         const totalItemsForQuery = firstBatchData.totalCount;
-        console.log(`Total items for ${queryItem}: ${totalItemsForQuery}`);
+        // console.log(`Total items for ${queryItem}: ${totalItemsForQuery}`);
         
         for (let i = batchSize; i < totalItemsForQuery; i += batchSize) {
             let filteredItems = [];
