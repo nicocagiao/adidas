@@ -8,7 +8,7 @@ Además, genera una API nueva, con menos datos, para consumir.
 
 
 
-## Como instalar
+## Como instalar y usar
 
 
 ```bash
@@ -24,6 +24,10 @@ Además, genera una API nueva, con menos datos, para consumir.
 ```
 
 `node app.js` inicia el servidor en localhost:3000 y comienza el fetch a la API de Adidas (Arg).
+
+Whatsapp-web.js genera un código QR que hay que escanear con el celular y vincular el dipositivo.
+
+Esto hace arrancar un cliente de whatsapp que debe estar activo todo el tiempo para poder enviar mensajes.
 
 ## Variables de ambiente
 
@@ -54,8 +58,8 @@ Para correr el proyecto se necesita un archivo `.env` con las siguientes variabl
 
 
 ## A Terminar
-
-- Whatsapp web ya envía mensajes de prueba, hay que incorporar la lógica de mensajes
-- 
+ 
 - optimizar las actions.js de puppeteer para que haga API calls simultáneas (ver límite de API y evitar ser bloqueado por Adidas) - Además, el fetch se hace uno por uno para que no sobrecargue tanto el CPU y la memoria.
+
+- Como implementar caching para no tener que hacer request a la API y solo hacerla cuando hay un cambio
 
