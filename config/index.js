@@ -10,5 +10,6 @@ module.exports = {
     whatsappNumber: process.env.WHATSAPP_NUMBER,
     puppeteerUserAgent: process.env.PUPPETEER_USER_AGENT,
     serverPort: parseInt(process.env.SERVER_PORT, 10),
-    // ... other configurations
+    telegramAPI: process.env.TELEGRAM_API,
+    telegramID: process.env.TELEGRAM_ID
 };

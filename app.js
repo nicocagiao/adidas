@@ -1,15 +1,16 @@
 require('dotenv').config();
 const cron = require('node-cron');
 const { initializeBrowser } = require('./puppeteer');
-const { initializeWhatsappWeb, client } = require('./whatsapp-web');
+// const { initializeWhatsappWeb, client } = require('./whatsapp-web');
 const { startFetchingData } = require('./puppeteer/actions');
 const config = require('./config/index');
 
 (async () => {
-    await initializeWhatsappWeb();
-    client.on('ready', async () => {
-        console.log("WhatsApp client is ready");
-        const browser = await initializeBrowser();
+    // await initializeWhatsappWeb();
+    // client.on('ready', async () => {
+    //     console.log("WhatsApp client is ready");
+    //     const browser = await initializeBrowser();
+    const browser = await initializeBrowser();
         await startFetchingData(browser)
 
         // cron job
@@ -22,7 +23,6 @@ const config = require('./config/index');
                 const totalItems = await startFetchingData(browser); 
             }
         });
-    });
 
     // Handle the browser closing on process exit
     process.on('exit', () => {

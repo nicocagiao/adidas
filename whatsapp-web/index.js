@@ -24,7 +24,7 @@ function initializeWhatsappWeb(){
     client.initialize();
 }
 
-async function sendMessage(to, message) {
+async function sendWhatsappMessage(to, message) {
         const sanitized_number = to.toString().replace(/[- )(]/g, "");
         const final_number = `${sanitized_number.substring(sanitized_number.length - 10)}`;
         const number_details = await client.getNumberId(final_number);
@@ -42,5 +42,5 @@ async function sendMessage(to, message) {
 module.exports = {
     initializeWhatsappWeb,
     client,
-    sendMessage
+    sendWhatsappMessage
 };

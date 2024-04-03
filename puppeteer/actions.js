@@ -1,7 +1,8 @@
-const { baseURL, query, batchSize, whatsappNumber} = require('../config/index');
+const { baseURL, query, batchSize, whatsappNumber, telegramID} = require('../config/index');
 const { saveToDatabase } = require('../database/helpers');
 const { db, getProductById } = require('../database');
-const { sendMessage } = require('../whatsapp-web/index')
+// const { sendWhatsappMessage } = require('../whatsapp-web/index');
+const { sendTelegramMessage } = require('../telegram/index');
 
 
 async function fetchData(browser, queryItem, start) {
@@ -62,7 +63,8 @@ async function startFetchingData(browser) {
                 getProductById(item.productId).then(row => {
                     if (row && row.salePrice < item.salePrice) {
                         console.log(`Sale price changed for product ID ${item.productId}. New price: ${item.salePrice}`);
-                        sendMessage(`${whatsappNumber}`, `Este producto acaba de cambiar de precio!:\n${item.displayName}.\nPrecio nuevo: ${item.salePrice}.\n% de descuento: ${item.salePercentage}.\n${item.link}`);
+                        sendTelegramMessage(`${telegramID}`, `Este producto acaba de cambiar de precio!:\n${item.displayName}.\nPrecio nuevo: ${item.salePrice}.\n% de descuento: ${item.salePercentage}.\n${item.link}`)
+                        // sendWhatsappMessage(`${whatsappNumber}`, `Este producto acaba de cambiar de precio!:\n${item.displayName}.\nPrecio nuevo: ${item.salePrice}.\n% de descuento: ${item.salePercentage}.\n${item.link}`);
                     }
                 }).catch(err => {
                     console.error('Error querying database:', err);
