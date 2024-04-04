@@ -20,6 +20,7 @@ function getProductById(productId) {
     return new Promise((resolve, reject) => {
         db.get(`SELECT * FROM products WHERE product_id = ?`, [productId], (err, row) => {
             if (err) {
+                console.error('Database error:', err);
                 reject(err);
             } else {
                 resolve(row);
@@ -27,6 +28,7 @@ function getProductById(productId) {
         });
     });
 }
+
 
 module.exports = {
     db,

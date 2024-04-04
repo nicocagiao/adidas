@@ -61,9 +61,9 @@ async function startFetchingData(browser) {
         if(filteredItems){
             for (const item of filteredItems.items) {
                 getProductById(item.productId).then(row => {
-                    if (row && row.salePrice < item.salePrice) {
+                    if (row && row.sale_price !== undefined && row.sale_price > item.salePrice) {
                         console.log(`Sale price changed for product ID ${item.productId}. New price: ${item.salePrice}`);
-                        sendTelegramMessage(`${telegramID}`, `🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥\nEste producto acaba de cambiar de precio!:\n${item.displayName}\nPrecio anterior: $ ${row.salePrice}\nPrecio nuevo: $ ${item.salePrice}\n${item.salePercentage} de descuento!!!\nhttps://www.adidas.com.ar${item.link}`)
+                        sendTelegramMessage(`${telegramID}`, `🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥\nEste producto acaba de cambiar de precio!:\n${item.displayName}\nPrecio anterior: $ ${row.sale_price}\nPrecio nuevo: $ ${item.salePrice}\n${item.salePercentage} de descuento!!!\nhttps://www.adidas.com.ar${item.link}`)
                         // sendWhatsappMessage(`${whatsappNumber}`, `Este producto acaba de cambiar de precio!:\n${item.displayName}.\nPrecio nuevo: ${item.salePrice}.\n% de descuento: ${item.salePercentage}.\n${item.link}`);
                     }
                 }).catch(err => {
