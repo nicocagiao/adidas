@@ -46,7 +46,7 @@ async function fetchData(browser, queryItem, start) {
 async function startFetchingData(browser) {
     for (let queryIndex = 0; queryIndex < query.length; queryIndex++) {
         const queryItem = query[queryIndex];
-        // console.log('Fetching data for:', queryItem);
+        console.log('Fetching data for:', queryItem);
         const firstBatchData = await fetchData(browser, queryItem, 0);
         if (!firstBatchData) continue;
         
@@ -63,7 +63,7 @@ async function startFetchingData(browser) {
                 getProductById(item.productId).then(row => {
                     if (row && row.salePrice < item.salePrice) {
                         console.log(`Sale price changed for product ID ${item.productId}. New price: ${item.salePrice}`);
-                        sendTelegramMessage(`${telegramID}`, `Este producto acaba de cambiar de precio!:\n${item.displayName}.\nPrecio nuevo: ${item.salePrice}.\n% de descuento: ${item.salePercentage}.\n${item.link}`)
+                        sendTelegramMessage(`${telegramID}`, `🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥\nEste producto acaba de cambiar de precio!:\n${item.displayName}\nPrecio anterior: $ ${row.salePrice}\nPrecio nuevo: $ ${item.salePrice}\n${item.salePercentage} de descuento!!!\nhttps://www.adidas.com.ar${item.link}`)
                         // sendWhatsappMessage(`${whatsappNumber}`, `Este producto acaba de cambiar de precio!:\n${item.displayName}.\nPrecio nuevo: ${item.salePrice}.\n% de descuento: ${item.salePercentage}.\n${item.link}`);
                     }
                 }).catch(err => {
