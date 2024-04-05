@@ -15,25 +15,18 @@ async function saveToDatabase(items) {
         // console.log('Items saved to the database.');
 
         // Check for changes in sale price
-        for (const item of items) {
-            const row = await getProductById(item.productId);
-            if (row && row.sale_price !== item.salePrice) {
-                console.log(`Sale price changed for product ID ${item.productId}. New price: ${item.salePrice}`);
-                sendWhatsAppMessage(item); // Send WhatsApp message for price change
-            }
-        }
+        // for (const item of items) {
+        //     const row = await getProductById(item.productId);
+        //     if (row && row.sale_price !== item.salePrice) {
+        //         console.log(`Sale price changed for product ID ${item.productId}. New price: ${item.salePrice}`);
+        //         sendWhatsAppMessage(item); // Send WhatsApp message for price change
+        //     }
+        // }
     } catch (error) {
         console.error('Error saving items to the database:', error);
     }
 }
 
-async function getProductById(productId) {
-    // Your implementation to get a product by ID from the database
-}
-
-function sendWhatsAppMessage(item) {
-    // Your implementation to send a WhatsApp message
-}
 
 module.exports = {
     saveToDatabase

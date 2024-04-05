@@ -63,9 +63,14 @@ async function startFetchingData(browser) {
                 getProductById(item.productId).then(row => {
                     if (row && row.sale_price !== undefined && row.sale_price > item.salePrice) {
                         console.log(`Sale price changed for product ID ${item.productId}. New price: ${item.salePrice}`);
-                        sendTelegramMessage(`${telegramID}`, `🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥\nEste producto acaba de cambiar de precio!:\n${item.displayName}\nPrecio anterior: $ ${row.sale_price}\nPrecio nuevo: $ ${item.salePrice}\n${item.salePercentage} de descuento!!!\nhttps://www.adidas.com.ar${item.link}`)
+                        sendTelegramMessage(`${telegramID}`, `🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥\nEste producto acaba de cambiar de precio!:\n${item.displayName}\nPrecio anterior: $ ${row.sale_price}\nPrecio nuevo: $ ${item.salePrice}\n${item.salePercentage} de descuento!!!\nhttps://www.adidas.com.ar${item.link}`);
                         // sendWhatsappMessage(`${whatsappNumber}`, `Este producto acaba de cambiar de precio!:\n${item.displayName}.\nPrecio nuevo: ${item.salePrice}.\n% de descuento: ${item.salePercentage}.\n${item.link}`);
-                    }
+                    } 
+                    //posible else if que te envía un mensaje si el "calzado" vale menos de 40 mil pesos
+                    // else if (row && row.sale_price !== undefined && queryItem == "calzado" && row.sale_price < 40000){
+                    //     console.log(`Calzado de menos de $40.000 ${item.productId}. Precio: ${item.salePrice}`);
+                    //     sendTelegramMessage(`${telegramID}`, `🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥\nEste calzado cuesta menos de 40K:\n${item.displayName}\nPrecio: $ ${item.salePrice}\n${item.salePercentage} de descuento!!!\nhttps://www.adidas.com.ar${item.link}`);
+                    // };
                 }).catch(err => {
                     console.error('Error querying database:', err);
                 });
